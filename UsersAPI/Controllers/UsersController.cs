@@ -9,25 +9,30 @@ namespace UserAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IUserRepo _IUserRepo;
+        public UsersController(IUserRepo repo)
+        {
+            _IUserRepo= repo;
+        }
         [HttpGet]
         public ActionResult<List<User>> GetAll()
         {
-            return UserRepo.getAll();
+            return _IUserRepo.getAll();
         }
 
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
         {
-            var user = UserRepo.Get(id);
+            var user = _IUserRepo.Get(id);
             if (user == null) return NotFound();
             return user;
         }
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var user = UserRepo.Get(id);
+            var user = _IUserRepo.Get(id);
             if (user == null) return NotFound();
-            UserRepo.Delete(id);
+            _IUserRepo.Delete(id);
             return Ok();
         }
 
@@ -35,20 +40,20 @@ namespace UserAPI.Controllers
         public ActionResult Create(User user)
         {
 
-            var _user = UserRepo.Get(user.Id);
+            var _user = _IUserRepo.Get(user.Id);
             if (_user != null) return BadRequest("User already exists!!!");
-            UserRepo.Add(user);
+            _IUserRepo.Add(user);
             return Ok();
         }
 
         [HttpPut]
         public ActionResult Update(int id, User user)
         {
-            var _user = UserRepo.Get(id);
+            var _user = _IUserRepo.Get(id);
             if (_user == null)
                 return NotFound();
             if(user.Id != id) return BadRequest("Id cannot be updated!");
-            UserRepo.update(user);
+            _IUserRepo.update(user);
             return Ok();
         }
     }

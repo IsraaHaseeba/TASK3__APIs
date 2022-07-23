@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\UsersAPI\\UsersAPI\\UsersAPI.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\UsersAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\UsersAPI\\UsersAPI\\UsersAPI.csproj": {
+    "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\UsersAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\UsersAPI\\UsersAPI\\UsersAPI.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\UsersAPI.csproj",
         "projectName": "UsersAPI",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\UsersAPI\\UsersAPI\\UsersAPI.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\UsersAPI.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\UsersAPI\\UsersAPI\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

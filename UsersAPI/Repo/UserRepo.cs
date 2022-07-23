@@ -2,11 +2,13 @@
 
 namespace UsersAPI.Repo
 {
-    public class UserRepo
+    public class UserRepo: IUserRepo
     {
-        static List<User> users { get; set; }
 
-        static UserRepo()
+        private  List<User> users { get; set; }
+
+
+         public UserRepo()
         {
             users = new List<User>()
             {
@@ -22,29 +24,29 @@ namespace UsersAPI.Repo
             };
         }
 
-        public static List<User> getAll()
+        public  List<User> getAll()
         {
             return users;
         }
 
-        public static User Get(int id)
+        public User Get(int id)
         {
             return users.FirstOrDefault(user => user.Id == id);
         }
 
-        public static void Delete(int id)
+        public  void Delete(int id)
         {
             var user = Get(id);
             if (user != null)
                 users.Remove(user);
         }
 
-        public static void Add(User user)
+        public  void Add(User user)
         {
             users.Add(user);
         }
 
-        public static void update(User user)
+        public  void update(User user)
         {
             var index = users.FindIndex(e => e.Id == user.Id);
             if (index == -1)

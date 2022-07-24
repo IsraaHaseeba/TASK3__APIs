@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using UsersAPI.Models;
 using UsersAPI.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

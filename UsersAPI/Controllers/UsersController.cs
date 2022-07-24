@@ -41,7 +41,7 @@ namespace UserAPI.Controllers
         {
 
             var _user = _IUserRepo.Get(user.Id);
-            if (_user != null) return BadRequest("User already exists!!!");
+            if (_user != null) return BadRequest("User already exists!");
             _IUserRepo.Add(user);
             return Ok();
         }

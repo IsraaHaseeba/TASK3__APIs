@@ -5,7 +5,9 @@ namespace UsersAPI.Models
 {
     public class UserContext : DbContext
     {
-        public UserContext(DbContextOptions options) : base(options) { }
-        DbSet<User> Users  { get;  set; }
+        public UserContext(DbContextOptions <UserContext>options) : base(options) { }
+        DbSet<User> Users2  { get;  set; }
+        DbSet<User> Post { get; set; }
+
     }
 }

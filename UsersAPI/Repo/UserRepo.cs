@@ -27,14 +27,9 @@ namespace UsersAPI.Repo
         public User Get(int id)
         {
             User user;
-            try
-            {
+            
                 user = _context.Find<User>(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            
             return user;
         }
 
@@ -70,7 +65,9 @@ namespace UsersAPI.Repo
                     _temp.Id = userModel.Id;
                     _temp.Name = userModel.Name;
                     _temp.Email = userModel.Email;
-                    
+                    if(userModel.Posts!=null)
+                    _temp.Posts = userModel.Posts;
+
                     _context.Update<User>(_temp);
                     model.Messsage = "User Update Successfully";
                 }
@@ -118,15 +115,8 @@ namespace UsersAPI.Repo
 
         public Post Get(int id)
         {
-            Post post;
-            try
-            {
-                post = _context.Find<Post>(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Post post= _context.Find<Post>(id);
+            
             return post;
         }
 
@@ -160,8 +150,10 @@ namespace UsersAPI.Repo
             if (_temp != null)
             {
                 _temp.Id = post.Id;
-                _temp.Name = post.Name;
-                _temp.Email = post.Email;
+                _temp.Title = post.Title;
+                _temp.Description = post.Description;
+                _temp.User = post.User;
+                _temp.UserID = post.UserID;
 
                 _context.Update<Post>(_temp);
                 model.Messsage = "post Update Successfully";

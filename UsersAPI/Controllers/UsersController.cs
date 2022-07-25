@@ -37,7 +37,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create([FromBody] User user)
         {
 
             var _user = _IUserRepo.Get(user.Id);

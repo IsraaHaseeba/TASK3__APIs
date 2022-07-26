@@ -54,12 +54,8 @@ namespace UsersAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(int id, Post post)
+        public ActionResult Update( Post post)
         {
-            var _Post = _IPostRepo.Get(id);
-            if (_Post == null)
-                return NotFound();
-            if (post.Id != id) return BadRequest("Id cannot be updated!");
             _IPostRepo.update(post);
             return Ok();
         }

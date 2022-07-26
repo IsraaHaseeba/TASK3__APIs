@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "scvB4P2A4pcLUDPUKR2B5zqQ5PHmmnwBcJ0ZJ6UvFA+g3nIvwqHW7PWZjDaCNcVCu1NULoN+mwjrAydrnNC8cw==",
+  "dgSpecHash": "Gls1nYqnUUXLEHc0mNPaRFZW+XxJyJN/pyvuoLv7MDda1wZAW3+EPKNWtD23LAQPNxf616IBZzpNxcNYI+UbCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\Training_IConnect\\task3\\TASK3__APIs\\UsersAPI\\UsersAPI.csproj",
   "expectedPackageFiles": [
@@ -35,6 +35,9 @@
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\npoi\\2.5.6\\npoi.2.5.6.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\portable.bouncycastle\\1.8.9\\portable.bouncycastle.1.8.9.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\sharpziplib\\1.3.3\\sharpziplib.1.3.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

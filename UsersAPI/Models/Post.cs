@@ -4,10 +4,8 @@ using UserAPI.Models;
 
 namespace UsersAPI.Models
 {
-        public class Post
+        public class Post: BaseModel
         {
-            [Key]
-            public int Id { get; set; }
             public string? Title { get; set; }
             public string? Description { get; set; }
 

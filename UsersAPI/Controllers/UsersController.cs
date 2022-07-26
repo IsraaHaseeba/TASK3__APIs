@@ -14,11 +14,13 @@ namespace UserAPI.Controllers
         {
             _IUserRepo= repo;
         }
+
         [HttpGet]
         public ActionResult<List<User>> GetAll()
         {
             return _IUserRepo.getAll();
         }
+
 
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
@@ -27,6 +29,8 @@ namespace UserAPI.Controllers
             if (user == null) return NotFound();
             return user;
         }
+
+
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -47,12 +51,8 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(int id, User user)
+        public ActionResult Update( User user)
         {
-            var _user = _IUserRepo.Get(id);
-            if (_user == null)
-                return NotFound();
-            if(user.Id != id) return BadRequest("Id cannot be updated!");
             _IUserRepo.update(user);
             return Ok();
         }

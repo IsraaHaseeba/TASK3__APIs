@@ -3,10 +3,8 @@ using UsersAPI.Models;
 
 namespace UserAPI.Models
 {
-    public class User
+    public class User: BaseModel
     {
-        [Key]
-        public int Id{ get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
 

@@ -92,3 +92,10 @@ C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\NPOI.dll
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\ICSharpCode.Decompiler.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Google.Apis.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Google.Apis.Admin.Directory.directory_v1.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Google.Apis.Auth.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Google.Apis.Core.dll

@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using UserAPI.Models;
 using UsersAPI.Models;
 using UsersAPI.Repo;
+using Microsoft.AspNetCore.Authorization;
+using UsersAPI.ActionFilters.Filters;
 
 namespace UsersAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
+    [ActionFilterExample("admin")]
     public class PostsController : ControllerBase
     {
         private readonly IPostRepo _IPostRepo;
@@ -20,7 +24,9 @@ namespace UsersAPI.Controllers
             _context = userContext;
             _IUserRepo = iUserRepo;
         }
+        [ActionFilterExample("admin")]
         [HttpGet]
+       
         public ActionResult<List<Post>> GetAll()
         {
             return _IPostRepo.getAll();

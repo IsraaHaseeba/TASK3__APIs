@@ -2,9 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using UserAPI.Models;
 using UsersAPI.Repo;
+using ICSharpCode.Decompiler.CSharp.Syntax;
+using Microsoft.AspNetCore.Authorization;
+using UsersAPI.ActionFilters.Filters;
 
 namespace UserAPI.Controllers
 {
+    [ActionFilterExample("admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -16,6 +20,8 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet]
+        [ActionFilterExample("admin")]
+        //[ServiceFilter(typeof(ActionFilterExample))]
         public ActionResult<List<User>> GetAll()
         {
             return _IUserRepo.getAll();

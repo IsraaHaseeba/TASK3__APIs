@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using UserAPI.Models;
 using UsersAPI.Models;
-using UsersAPI.ViewModels;
 
 namespace UsersAPI.Repo
 {
+
     public class UserRepo: GenRepo<User>, IUserRepo
     {
         
@@ -12,7 +13,7 @@ namespace UsersAPI.Repo
         {
             
         }
-
+        
         public new List<User>? getAll()
         {
             return _context.Users2.Include(p => p.Posts).ToList();

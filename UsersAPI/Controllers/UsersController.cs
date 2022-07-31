@@ -25,20 +25,20 @@ namespace UserAPI.Controllers
 
         [HttpGet]
         [ActionFilterExample("admin")]
-        public List<UserModel> GetAll()
+        public async Task<List<UserViewModel>> GetAll()
         {
-            List<User> users = _IUserRepo.getAll();
-            return _mapper.Map<List<UserModel>>(users);
+            List<User> users = await _IUserRepo.getAll();
+            return _mapper.Map<List<UserViewModel>>(users);
 
         }
 
 
         [HttpGet("{id}")]
-        public UserModel Get(int id)
+        public async Task<UserViewModel> Get(int id)
         {
             var user = _IUserRepo.Get(id);
-            var userModel = _mapper.Map<UserModel>(user);
-            return userModel;
+            return  _mapper.Map<UserViewModel>(user);
+         
         }
 
 
@@ -49,16 +49,16 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost]
-        public async Task Create([FromBody] UserModel userModel)
+        public async Task Create([FromBody] UserViewModel userModel)
         {
             var _user = _mapper.Map<User>(userModel);
             var user = _IUserRepo.Get(_user.Id);
-           await  _IUserRepo.Add(user);
+            await _IUserRepo.Add(await user);
 
         }
 
         [HttpPut]
-        public async Task Update(UserModel userModel)
+        public async Task Update(UserViewModel userModel)
         {
            await  _IUserRepo.update(_mapper.Map<User>(userModel));
         }

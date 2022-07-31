@@ -29,17 +29,17 @@ namespace UsersAPI.Controllers
         [ActionFilterExample("admin")]
         [HttpGet]
        
-        public  List<PostModel> GetAll()
+        public  async Task<List<PostViewModel>> GetAll()
         {
             var posts = _IPostRepo.getAll();
-            return _mapper.Map<List<PostModel>>(posts);
+            return _mapper.Map<List<PostViewModel>>(posts);
         }
 
         [HttpGet("{id}")]
-        public  PostModel Get(int id)
+        public async  Task<PostViewModel> Get(int id)
         {
             var post = _IPostRepo.Get(id);
-            var postModel = _mapper.Map<PostModel>(post);
+            var postModel = _mapper.Map<PostViewModel>(post);
             return postModel;
         }
         [HttpDelete("{id}")]
@@ -49,16 +49,16 @@ namespace UsersAPI.Controllers
         }
 
         [HttpPost]
-        public async Task Create([FromBody] PostModel postModel)
+        public async Task Create([FromBody] PostViewModel postModel)
         {
             var _post = _mapper.Map<Post>(postModel);
             var post = _IPostRepo.Get(_post.Id);
-           await _IPostRepo.Add(post);
+           await _IPostRepo.Add(await post);
          
         }
 
         [HttpPut]
-        public async Task Update( PostModel postModel)
+        public async Task Update( PostViewModel postModel)
         {
 
             await _IPostRepo.update(_mapper.Map<Post>(postModel));

@@ -14,7 +14,7 @@ namespace UsersAPI.Repo
             
         }
         
-        public new List<User>? getAll()
+        public new async  Task<List<User>>? getAll()
         {
             return _context.Users2.Include(p => p.Posts).ToList();
         }
@@ -29,7 +29,7 @@ namespace UsersAPI.Repo
         {
              
         }
-        public new List<Post>? getAll()
+        public new async Task<List<Post>>? getAll()
         {
             return _context.Post.Include(u => u.User).ToList();
         }

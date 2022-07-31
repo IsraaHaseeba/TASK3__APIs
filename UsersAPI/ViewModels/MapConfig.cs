@@ -8,8 +8,8 @@ namespace UsersAPI.ViewModels
     {
         public MapConfig()
         {
-            CreateMap<User, UserModel>().ReverseMap();
-            CreateMap<Post, PostModel>().ReverseMap();
+            CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<Post, PostViewModel>().ReverseMap();
 
         }
 

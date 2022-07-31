@@ -7,8 +7,8 @@ namespace UsersAPI.Repo
 
     public interface IGenRepo<T> where T : class, IBaseModel 
     {
-        public List<T> getAll();
-        public T Get(int id);
+        public Task<List<T>> getAll();
+        public Task<T> Get(int id);
         public void Delete(int id);
         public Task<T> Add(T t);
         public Task<T> update(T t);
@@ -25,19 +25,19 @@ namespace UsersAPI.Repo
             _context = context;
         }
 
-        public  List<T>? getAll()
+        public async Task<List<T>>? getAll()
         {
             return _context.Set<T>().ToList();
         }
 
-        public  T Get(int id)
+        public   async Task<T> Get(int id)
         {
             return _context.Find<T>(id);
         }
 
         public async void Delete(int id)
         {
-            _context.Remove<T>(Get(id));
+            _context.Remove<Task<T>>(Get(id));
             await _context.SaveChangesAsync();
         }
 

@@ -10,8 +10,8 @@ namespace UsersAPI.Repo
         public List<T> getAll();
         public T Get(int id);
         public void Delete(int id);
-        public T Add(T t);
-        public T update(T t);
+        public Task<T> Add(T t);
+        public Task<T> update(T t);
     }
 
 
@@ -25,32 +25,32 @@ namespace UsersAPI.Repo
             _context = context;
         }
 
-        public List<T>? getAll()
+        public  List<T>? getAll()
         {
             return _context.Set<T>().ToList();
         }
 
-        public T Get(int id)
+        public  T Get(int id)
         {
             return _context.Find<T>(id);
         }
 
-        public void Delete(int id)
+        public async void Delete(int id)
         {
             _context.Remove<T>(Get(id));
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public T update(T model)
+        public async Task<T> update(T model)
         {
             _context.Set<T>().Update(model);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return model;
         }
-        public T Add(T t)
+        public async Task<T> Add(T t)
         {
-            _context.Add<T>(t);
-            _context.SaveChanges();
+            await _context.Set<T>().AddAsync(t);
+            await _context.SaveChangesAsync();
             return t;
         }
 

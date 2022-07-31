@@ -5,6 +5,8 @@ using UsersAPI.Repo;
 using ICSharpCode.Decompiler.CSharp.Syntax;
 using Microsoft.AspNetCore.Authorization;
 using UsersAPI.ActionFilters.Filters;
+using UsersAPI.ViewModels;
+using AutoMapper;
 
 namespace UserAPI.Controllers
 {
@@ -14,53 +16,51 @@ namespace UserAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepo _IUserRepo;
-        public UsersController(IUserRepo repo)
+        private readonly IMapper _mapper;
+        public UsersController(IUserRepo repo, IMapper iMapper)
         {
             _IUserRepo= repo;
+            _mapper = iMapper;
         }
 
         [HttpGet]
         [ActionFilterExample("admin")]
-        //[ServiceFilter(typeof(ActionFilterExample))]
-        public ActionResult<List<User>> GetAll()
+        public List<UserModel> GetAll()
         {
-            return _IUserRepo.getAll();
+            List<User> users = _IUserRepo.getAll();
+            return _mapper.Map<List<UserModel>>(users);
+
         }
 
 
         [HttpGet("{id}")]
-        public ActionResult<User> Get(int id)
+        public UserModel Get(int id)
         {
             var user = _IUserRepo.Get(id);
-            if (user == null) return NotFound();
-            return user;
+            var userModel = _mapper.Map<UserModel>(user);
+            return userModel;
         }
 
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task Delete(int id)
         {
-            var user = _IUserRepo.Get(id);
-            if (user == null) return NotFound();
-            _IUserRepo.Delete(id);
-            return Ok();
+           _IUserRepo.Delete(id);
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] User user)
+        public async Task Create([FromBody] UserModel userModel)
         {
+            var _user = _mapper.Map<User>(userModel);
+            var user = _IUserRepo.Get(_user.Id);
+           await  _IUserRepo.Add(user);
 
-            var _user = _IUserRepo.Get(user.Id);
-            if (_user != null) return BadRequest("User already exists!");
-            _IUserRepo.Add(user);
-            return Ok();
         }
 
         [HttpPut]
-        public ActionResult Update( User user)
+        public async Task Update(UserModel userModel)
         {
-            _IUserRepo.update(user);
-            return Ok();
+           await  _IUserRepo.update(_mapper.Map<User>(userModel));
         }
     }
 }

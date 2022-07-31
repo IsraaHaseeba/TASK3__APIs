@@ -1,5 +1,6 @@
 ﻿using UsersAPI.ActionFilters.Filters;
 using UsersAPI.Repo;
+using UsersAPI.ViewModels;
 
 namespace UsersAPI
 {
@@ -10,7 +11,7 @@ namespace UsersAPI
             Services.AddEndpointsApiExplorer();
             Services.AddSwaggerGen();
             Services.AddScoped<IUserRepo, UserRepo>();
-            Services.AddScoped<ActionFilterExample>(_ => new ActionFilterExample("admin"));
+            Services.AddScoped(_ => new ActionFilterExample("admin"));
             Services.AddScoped<IPostRepo, PostRepo>();
 
         }

@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using UserAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using UsersAPI.Models;
 using UsersAPI.Repo;
-using Microsoft.AspNetCore.Authorization;
 using UsersAPI.ActionFilters.Filters;
+using UsersAPI.ViewModels;
+using AutoMapper;
 
 namespace UsersAPI.Controllers
 {
@@ -17,53 +16,53 @@ namespace UsersAPI.Controllers
         private readonly IPostRepo _IPostRepo;
         private UserContext _context;
         private IUserRepo _IUserRepo;
+        private readonly IMapper _mapper;
 
-        public PostsController(IPostRepo repo, UserContext userContext, IUserRepo iUserRepo)
+        public PostsController(IPostRepo repo, UserContext userContext, 
+            IUserRepo iUserRepo, IMapper iMapper)
         {
             _IPostRepo = repo;
             _context = userContext;
             _IUserRepo = iUserRepo;
+            _mapper = iMapper;  
         }
         [ActionFilterExample("admin")]
         [HttpGet]
        
-        public ActionResult<List<Post>> GetAll()
+        public  List<PostModel> GetAll()
         {
-            return _IPostRepo.getAll();
+            var posts = _IPostRepo.getAll();
+            return _mapper.Map<List<PostModel>>(posts);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Post> Get(int id)
+        public  PostModel Get(int id)
         {
             var post = _IPostRepo.Get(id);
-            if (post == null) return NotFound();
-            return post;
+            var postModel = _mapper.Map<PostModel>(post);
+            return postModel;
         }
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task Delete(int id)
         {
-            var post= _IPostRepo.Get(id);
-            if (post == null) return NotFound();
             _IPostRepo.Delete(id);
-            return Ok();
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] Post post)
+        public async Task Create([FromBody] PostModel postModel)
         {
-
-            var _post = _IPostRepo.Get(post.Id);
-            if (_post != null) return BadRequest("Post already exists!");
-            
-            _IPostRepo.Add(post);
-            return Ok();
+            var _post = _mapper.Map<Post>(postModel);
+            var post = _IPostRepo.Get(_post.Id);
+           await _IPostRepo.Add(post);
+         
         }
 
         [HttpPut]
-        public ActionResult Update( Post post)
+        public async Task Update( PostModel postModel)
         {
-            _IPostRepo.update(post);
-            return Ok();
+
+            await _IPostRepo.update(_mapper.Map<Post>(postModel));
+           
         }
     }
 }

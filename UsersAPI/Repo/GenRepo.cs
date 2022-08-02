@@ -1,5 +1,8 @@
-﻿using NPOI.SS.Formula.Functions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using NPOI.SS.Formula.Functions;
 using UsersAPI.Models;
+using UsersAPI.ViewModels;
 
 namespace UsersAPI.Repo
 {
@@ -7,9 +10,9 @@ namespace UsersAPI.Repo
 
     public interface IGenRepo<T> where T : class, IBaseModel 
     {
-        public Task<List<T>> getAll();
-        public Task<T> Get(int id);
-        public void Delete(int id);
+        public Task<List<TVM>> getAll<TVM>();
+        public TVM Get<TVM>(int id) where TVM : class, IBaseModel;
+        public Task Delete(int id);
         public Task<T> Add(T t);
         public Task<T> update(T t);
     }
@@ -18,26 +21,28 @@ namespace UsersAPI.Repo
     public class GenRepo<T>: IGenRepo<T> where T: class, IBaseModel
     {
         public UserContext _context;
+        public IMapper _imapper;
+        
 
-
-        public GenRepo(UserContext context)
+        public GenRepo(UserContext context, IMapper imapper)
         {
             _context = context;
+            _imapper = imapper;
         }
 
-        public async Task<List<T>>? getAll()
+        public async Task<List<TVM>>? getAll<TVM>()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>().ProjectTo<TVM>(_imapper.ConfigurationProvider).ToList();
+        }
+        public TVM ?Get<TVM>(int id) where TVM : class, IBaseModel
+        {
+            return _context.Set<T>().ProjectTo<TVM>(_imapper.ConfigurationProvider).FirstOrDefault(c => c.Id == id);
         }
 
-        public   async Task<T> Get(int id)
+        public async Task Delete(int id)
         {
-            return _context.Find<T>(id);
-        }
-
-        public async void Delete(int id)
-        {
-            _context.Remove<Task<T>>(Get(id));
+            var _temp = _context.Set<T>().FirstOrDefault(c => c.Id == id);
+            _context.Remove<T>(_temp);
             await _context.SaveChangesAsync();
         }
 

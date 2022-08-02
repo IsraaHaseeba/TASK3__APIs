@@ -16,44 +16,42 @@ namespace UsersAPI.Controllers
         private readonly IPostRepo _IPostRepo;
         private UserContext _context;
         private IUserRepo _IUserRepo;
-        private readonly IMapper _mapper;
+        private IMapper _mapper;
 
+        
         public PostsController(IPostRepo repo, UserContext userContext, 
-            IUserRepo iUserRepo, IMapper iMapper)
+            IUserRepo iUserRepo, IMapper imapper)
         {
             _IPostRepo = repo;
             _context = userContext;
             _IUserRepo = iUserRepo;
-            _mapper = iMapper;  
+            _mapper = imapper;  
         }
         [ActionFilterExample("admin")]
         [HttpGet]
        
         public  async Task<List<PostViewModel>> GetAll()
         {
-            var posts = _IPostRepo.getAll();
-            return _mapper.Map<List<PostViewModel>>(posts);
+            var posts =await _IPostRepo.getAll<PostViewModel>();
+            return posts;
         }
-
+        
         [HttpGet("{id}")]
-        public async  Task<PostViewModel> Get(int id)
+        public   PostViewModel Get(int id)
         {
-            var post = _IPostRepo.Get(id);
-            var postModel = _mapper.Map<PostViewModel>(post);
-            return postModel;
+            return  _IPostRepo.Get<PostViewModel>(id);
         }
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            _IPostRepo.Delete(id);
+             await _IPostRepo.Delete(id);
         }
 
         [HttpPost]
         public async Task Create([FromBody] PostViewModel postModel)
         {
             var _post = _mapper.Map<Post>(postModel);
-            var post = _IPostRepo.Get(_post.Id);
-           await _IPostRepo.Add(await post);
+           await _IPostRepo.Add(_post);
          
         }
 
@@ -61,7 +59,7 @@ namespace UsersAPI.Controllers
         public async Task Update( PostViewModel postModel)
         {
 
-            await _IPostRepo.update(_mapper.Map<Post>(postModel));
+            await _IPostRepo.update(_mapper.Map<PostViewModel,Post>(postModel));
            
         }
     }

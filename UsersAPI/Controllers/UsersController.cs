@@ -27,17 +27,17 @@ namespace UserAPI.Controllers
         [ActionFilterExample("admin")]
         public async Task<List<UserViewModel>> GetAll()
         {
-            List<User> users = await _IUserRepo.getAll();
-            return _mapper.Map<List<UserViewModel>>(users);
+            var users = await _IUserRepo.getAll<UserViewModel>();
+            return users;
 
         }
 
 
         [HttpGet("{id}")]
-        public async Task<UserViewModel> Get(int id)
+        public  UserViewModel Get(int id)
         {
-            var user = _IUserRepo.Get(id);
-            return  _mapper.Map<UserViewModel>(user);
+            var user =  _IUserRepo.Get<UserViewModel>(id);
+            return  user;
          
         }
 
@@ -45,22 +45,21 @@ namespace UserAPI.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-           _IUserRepo.Delete(id);
+           await _IUserRepo.Delete(id);
         }
 
         [HttpPost]
         public async Task Create([FromBody] UserViewModel userModel)
         {
-            var _user = _mapper.Map<User>(userModel);
-            var user = _IUserRepo.Get(_user.Id);
-            await _IUserRepo.Add(await user);
+            var _user = _mapper.Map<UserViewModel,User>(userModel);
+            await _IUserRepo.Add(_user);
 
         }
 
         [HttpPut]
         public async Task Update(UserViewModel userModel)
         {
-           await  _IUserRepo.update(_mapper.Map<User>(userModel));
+           await  _IUserRepo.update(_mapper.Map<UserViewModel,User>(userModel));
         }
     }
 }

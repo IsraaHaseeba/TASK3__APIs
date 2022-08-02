@@ -10,7 +10,8 @@ using AutoMapper;
 
 namespace UserAPI.Controllers
 {
-    [ActionFilterExample("admin")]
+    //[ActionFilterExample("admin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -24,7 +25,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet]
-        [ActionFilterExample("admin")]
+        //[ActionFilterExample("admin")]
         public async Task<List<UserViewModel>> GetAll()
         {
             var users = await _IUserRepo.getAll<UserViewModel>();

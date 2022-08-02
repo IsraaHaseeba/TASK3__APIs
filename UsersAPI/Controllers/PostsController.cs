@@ -4,13 +4,15 @@ using UsersAPI.Repo;
 using UsersAPI.ActionFilters.Filters;
 using UsersAPI.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAPI.Controllers
 {
-    
+
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [ActionFilterExample("admin")]
+    //[ActionFilterExample("admin")]
     public class PostsController : ControllerBase
     {
         private readonly IPostRepo _IPostRepo;
@@ -27,7 +29,7 @@ namespace UsersAPI.Controllers
             _IUserRepo = iUserRepo;
             _mapper = imapper;  
         }
-        [ActionFilterExample("admin")]
+        //[ActionFilterExample("admin")]
         [HttpGet]
        
         public  async Task<List<PostViewModel>> GetAll()

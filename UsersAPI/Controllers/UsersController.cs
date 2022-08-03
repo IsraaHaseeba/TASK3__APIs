@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Authorization;
 using UsersAPI.ActionFilters.Filters;
 using UsersAPI.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace UserAPI.Controllers
 {
     //[ActionFilterExample("admin")]
-    [Authorize]
+    //[Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase

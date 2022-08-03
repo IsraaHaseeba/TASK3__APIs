@@ -5,11 +5,13 @@ using UsersAPI.ActionFilters.Filters;
 using UsersAPI.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace UsersAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     //[ActionFilterExample("admin")]

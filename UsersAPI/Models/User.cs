@@ -10,5 +10,6 @@ namespace UserAPI.Models
         public string? Email { get; set; }
 
         public ICollection<Post>? Posts { get; set; }
+      
     }
 }

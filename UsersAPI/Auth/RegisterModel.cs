@@ -15,7 +15,8 @@ namespace UsersAPI.Auth
 
             [Required(ErrorMessage = "Password is required")]
             public string? Password { get; set; }
-        }
+
+    }
     
     
 }

@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UserAPI.Models;
 using UsersAPI.Repo;
-using ICSharpCode.Decompiler.CSharp.Syntax;
 using Microsoft.AspNetCore.Authorization;
-using UsersAPI.ActionFilters.Filters;
 using UsersAPI.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,7 +11,7 @@ namespace UserAPI.Controllers
 {
     //[ActionFilterExample("admin")]
     //[Authorize]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin")]
 
     [Route("api/[controller]")]
     [ApiController]

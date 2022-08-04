@@ -6,10 +6,11 @@ using UsersAPI.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
 
 namespace UsersAPI.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin")]
 
     //[Authorize]
     [Route("api/[controller]")]
@@ -55,7 +56,11 @@ namespace UsersAPI.Controllers
         public async Task Create([FromBody] PostViewModel postModel)
         {
             var _post = _mapper.Map<Post>(postModel);
-           await _IPostRepo.Add(_post);
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst("userID")?.Value;
+            
+            _post.UserID = Convert.ToInt32(userId);
+            await _IPostRepo.Add(_post);
          
         }
 

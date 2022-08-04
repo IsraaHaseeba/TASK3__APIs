@@ -35,10 +35,11 @@ namespace UsersAPI.Repo
         {
             
         }
-       /* public new async Task<List<PostViewModel>>? getAll()
-        {
-            return _context.Users2.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).ToList();
-        }*/
+     
+        /* public new async Task<List<PostViewModel>>? getAll()
+         {
+             return _context.Users2.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).ToList();
+         }*/
 
 
 

@@ -12,8 +12,8 @@ using UsersAPI.Models;
 namespace UsersAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20220802141311_init")]
-    partial class init
+    [Migration("20220804093445_r")]
+    partial class r
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,6 +171,9 @@ namespace UsersAPI.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

@@ -107,3 +107,7 @@ C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\UsersAPI.staticwebassets.runtime.json
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\HP\Desktop\Training_IConnect\task3\TASK3__APIs\UsersAPI\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll

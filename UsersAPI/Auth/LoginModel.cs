@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-namespace UsersAPI.Auth
-{
-  
+﻿
+    using System.ComponentModel.DataAnnotations;
+    namespace UsersAPI.Auth
+    {
+
         public class LoginModel
         {
             [Required(ErrorMessage = "User Name is required")]
@@ -10,5 +11,6 @@ namespace UsersAPI.Auth
             [Required(ErrorMessage = "Password is required")]
             public string? Password { get; set; }
         }
+
     
 }

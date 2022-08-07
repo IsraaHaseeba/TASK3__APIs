@@ -54,14 +54,14 @@ namespace UserAPI.Controllers
         public async Task Create([FromBody] UserViewModel userModel)
         {
             var _user = _mapper.Map<UserViewModel,User>(userModel);
-            await _IUserRepo.Add(_user);
+            await _IUserRepo.Add(_user, _user.Id);
 
         }
 
         [HttpPut]
         public async Task Update(UserViewModel userModel)
         {
-           await  _IUserRepo.update(_mapper.Map<UserViewModel,User>(userModel));
+           await  _IUserRepo.update(_mapper.Map<UserViewModel,User>(userModel), userModel.Id);
         }
     }
 }

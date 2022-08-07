@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using NPOI.SS.Formula.Functions;
+using System.Security.Claims;
 using UsersAPI.Models;
 using UsersAPI.ViewModels;
 
@@ -14,8 +15,8 @@ namespace UsersAPI.Repo
         //public Task<List<TVM>> Search<TVM>(int page, int size, string textToSearch);
         public TVM Get<TVM>(int id) where TVM : class, IBaseModel;
         public Task Delete(int id);
-        public Task<T> Add(T t);
-        public Task<T> update(T t);
+        public Task<T> Add(T t, int id);
+        public Task<T> update(T t, int id);
     }
 
 
@@ -47,14 +48,42 @@ namespace UsersAPI.Repo
             await _context.SaveChangesAsync();
         }
 
-        public async Task<T> update(T model)
+        public async Task<T> update(T model, int id)
         {
-            _context.Set<T>().Update(model);
+            var _temp = _context.Set<T>().FirstOrDefault(c => c.Id == model.Id);
+            
+            Type type = _temp.GetType();
+
+            if (type.GetProperty("updateDate") != null)
+            {
+                type.GetProperty("updateDate").SetValue(_temp, DateTime.Now);
+            };
+
+            if (type.GetProperty("updatedBy") != null)
+            {
+
+                type.GetProperty("updatedBy").SetValue(_temp, id);
+            }
+           
+            _context.Set<T>().Update(_temp);
             await _context.SaveChangesAsync();
-            return model;
+            return _temp;
         }
-        public async Task<T> Add(T t)
+        public async Task<T> Add(T t, int id)
         {
+            Type type=t.GetType();
+
+            if (type.GetProperty("creationDate") != null)
+            {
+                type.GetProperty("creationDate").SetValue(t, DateTime.Now);
+            };
+
+            if (type.GetProperty("createdBy") != null)
+            {
+                type.GetProperty("createdBy").SetValue(t, id);
+            }
+
+            
             await _context.Set<T>().AddAsync(t);
             await _context.SaveChangesAsync();
             return t;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UsersAPI.Models;
 
@@ -11,9 +12,10 @@ using UsersAPI.Models;
 namespace UsersAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220807093620_dates")]
+    partial class dates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,17 +248,11 @@ namespace UsersAPI.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<int>("createdBy")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("creationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("updateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("updatedBy")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

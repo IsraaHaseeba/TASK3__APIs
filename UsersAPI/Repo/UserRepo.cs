@@ -39,7 +39,7 @@ namespace UsersAPI.Repo
          public List<PostViewModel> Search(int page, int size, string textToSearch)
          {
             if (string.IsNullOrWhiteSpace(textToSearch)) return null;
-             return  _context.Post.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).Skip(page).Take(size).Where(x => x.Description.ToLower().Contains(textToSearch.ToLower().Trim())).ToList();
+             return  _context.Post.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).Where(x => x.Title.ToLower().Contains(textToSearch.ToLower().Trim())).Skip(page*size).Take(size).ToList();
          }
 
         

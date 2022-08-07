@@ -57,18 +57,22 @@ namespace UsersAPI.Controllers
         {
             var _post = _mapper.Map<Post>(postModel);
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst("userID")?.Value;
+            var userId = claimsIdentity.FindFirst("UserID")?.Value;
             
             _post.UserID = Convert.ToInt32(userId);
-            await _IPostRepo.Add(_post);
+            await _IPostRepo.Add(_post, Convert.ToInt32(userId));
          
         }
 
         [HttpPut]
         public async Task Update( PostViewModel postModel)
         {
+            var _post = _mapper.Map<Post>(postModel);
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst("UserID").Value;
 
-            await _IPostRepo.update(_mapper.Map<PostViewModel,Post>(postModel));
+
+            await _IPostRepo.update(_mapper.Map<PostViewModel,Post>(postModel), Convert.ToInt32(userId));
            
         }
         [HttpGet("{page},{size},{textToSearch}")]

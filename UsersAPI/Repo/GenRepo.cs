@@ -11,6 +11,7 @@ namespace UsersAPI.Repo
     public interface IGenRepo<T> where T : class, IBaseModel 
     {
         public Task<List<TVM>> getAll<TVM>();
+        //public Task<List<TVM>> Search<TVM>(int page, int size, string textToSearch);
         public TVM Get<TVM>(int id) where TVM : class, IBaseModel;
         public Task Delete(int id);
         public Task<T> Add(T t);
@@ -58,6 +59,8 @@ namespace UsersAPI.Repo
             await _context.SaveChangesAsync();
             return t;
         }
+
+       
 
     }
 

@@ -36,13 +36,13 @@ namespace UsersAPI.Repo
             
         }
      
-        /* public new async Task<List<PostViewModel>>? getAll()
+         public List<PostViewModel> Search(int page, int size, string textToSearch)
          {
-             return _context.Users2.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).ToList();
-         }*/
+            if (string.IsNullOrWhiteSpace(textToSearch)) return null;
+             return  _context.Post.ProjectTo<PostViewModel>(_imapper.ConfigurationProvider).Skip(page).Take(size).Where(x => x.Description.ToLower().Contains(textToSearch.ToLower().Trim())).ToList();
+         }
 
-
-
+        
     }
 
 }

@@ -71,5 +71,11 @@ namespace UsersAPI.Controllers
             await _IPostRepo.update(_mapper.Map<PostViewModel,Post>(postModel));
            
         }
+        [HttpGet("{page},{size},{textToSearch}")]
+        public  List<PostViewModel> Search(int page, int size, string textToSearch)
+        {
+            return  _IPostRepo.Search(page, size, textToSearch);
+            
+        }
     }
 }
